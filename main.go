@@ -6,7 +6,6 @@ import (
 	"campaign/handler"
 	"campaign/helper"
 	"campaign/user"
-	"fmt"
 	"log"
 	"net/http"
 	"strings"
@@ -29,10 +28,8 @@ func main() {
 	userRepository := user.NewRepository(db)
 	campaignRepository := campaign.NewRepository(db)
 
-	cmp, err := campaignRepository.FindByUserID(6)
-	fmt.Println(cmp[0].CampaignImages[0].FileName)
-
 	userService := user.NewService(userRepository)
+	campaignService := campaign.NewService(campaignRepository)
 	authService := auth.NewService()
 
 	userHandler := handler.NewUserHandler(userService, authService)
